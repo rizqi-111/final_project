@@ -21,7 +21,7 @@ class UserController extends Controller
     public function store(Request $request){
         $request->validate([
             'username' => 'required',
-            'password' => 'password'
+            'password' => 'required'
         ]);
 
         $username = $request->input('username');
@@ -48,7 +48,7 @@ class UserController extends Controller
     public function update($id){
         $request->validate([
             'username' => 'required',
-            'password' => 'password'
+            'password' => 'required'
         ]);
 
         $username = $request->input('username');
