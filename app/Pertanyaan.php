@@ -17,7 +17,7 @@ class Pertanyaan extends Model
     }
 
     public function tags(){
-
+        return $this->belongsToMany('App\Tag');
     }
 
     public function vote_pertanyaans(){
