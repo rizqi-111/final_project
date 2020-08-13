@@ -26,10 +26,12 @@ class UserController extends Controller
 
         $username = $request->input('username');
         $password = $request->input('password');
+        $email = $request->input('email');
 
         $user = User::create([
             'username' => $username,
-            'password' => $password
+            'password' => $password,
+            'email' => $email
         ]);
 
         return direct('/user')->with('success','User Berhasil Ditambahkan');

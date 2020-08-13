@@ -18,20 +18,9 @@ class CreatePertanyaansTable extends Migration
             $table->string('judul');
             $table->string('isi');
             $table->bigInteger('jawaban_tepat_id')->unsigned()->nullable();
-            $table->foreign('jawaban_tepat_id')->references('id')->on('jawaban');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('tag_id')->unsigned()->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
-        });
-
-        Schema::table('jawaban',function(Blueprint $table) {
-            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaans');
-        });
-
-        Schema::table('tags',function(Blueprint $table) {
-            $table->foreign('pertanyaan_id')->references('id')->on('pertanyaans');
         });
     }
 
@@ -42,6 +31,10 @@ class CreatePertanyaansTable extends Migration
      */
     public function down()
     {
+        Schema::table('pertanyaans',function(Blueprint $table) {
+            $table->dropForeign('pertanyaans_user_id_foreign');
+        });
+
         Schema::dropIfExists('pertanyaans');
     }
 }

@@ -31,6 +31,10 @@ class CreateKomentarPertanyaansTable extends Migration
      */
     public function down()
     {
+        Schema::table('komentar_pertanyaans', function (Blueprint $table) {
+            $table->dropForeign('komentar_pertanyaans_user_id_foreign');
+            $table->dropForeign('komentar_pertanyaans_pertanyaan_id_foreign');
+        });
         Schema::dropIfExists('komentar_pertanyaans');
     }
 }

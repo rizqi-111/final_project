@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    public $fillable = ['username','password'];
+    public $fillable = ['username','password', 'email'];
 
     public $timestamps = false;
     
@@ -17,7 +17,6 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'foto' => null,
         'vote' => 0
     ];
 

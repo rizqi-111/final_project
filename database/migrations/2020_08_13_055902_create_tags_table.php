@@ -16,7 +16,6 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->bigInteger('pertanyaan_id')->unsigned()->nullable();
         });
     }
 
