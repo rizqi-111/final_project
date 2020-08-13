@@ -18,4 +18,28 @@ class User extends Authenticatable
         'foto' => null,
         'vote' => 0
     ];
+
+    public function pertanyaans(){
+        return $this->hasMany('App\Pertanyaan');
+    }
+
+    public function jawabans(){
+        return $this->hasMany('App\Jawaban');
+    }
+
+    public function komentar_jawabans(){
+        return $this->hasMany('App\Komentar_jawaban');
+    }
+
+    public function komentar_pertanyaans(){
+        return $this->hasMany('App\Komentar_pertanyaan');
+    }
+
+    public function vote_jawabans(){
+        return $this->hasMany('App\Vote_jawaban');
+    }
+
+    public function vote_pertanyaans(){
+        return $this->hasMany('App\Vote_pertanyaan');
+    }
 }
