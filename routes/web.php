@@ -24,3 +24,7 @@ Route::get('/test', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/pertanyaan', 'PertanyaanController@index');
+Route::get('/profile', 'ProfileController@index');
+Route::get('/comment', 'CommentController@index');
+Route::get('/tags', 'TagsController@index');
