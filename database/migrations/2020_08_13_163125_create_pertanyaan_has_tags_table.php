@@ -29,11 +29,7 @@ class CreatePertanyaanHasTagsTable extends Migration
      */
     public function down()
     {
-        Schema::table('pertanyaan_has_tags',function (Blueprint $table) {
-            $table->dropForeign('pertanyaan_has_tags_pertanyaan_id_foreign');
-            $table->dropForeign('pertanyaan_has_tags_tag_id_foreign');
-        });
 
-        Schema::dropIfExists('pertanyaan_has_tags');
+        Schema::dropIfExists('pertanyaan_tag');
     }
 }

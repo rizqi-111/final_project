@@ -18,7 +18,7 @@ class Pertanyaan extends Model
     }
 
     public function tags(){
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag','pertanyaan_tag','pertanyaan_id','tag_id');
     }
 
     public function vote_pertanyaans(){
