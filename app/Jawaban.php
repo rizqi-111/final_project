@@ -14,11 +14,11 @@ class Jawaban extends Model
     }
 
     public function pertanyaan(){
-        return $this->belongsTo('App\Pertanyaan');
+        return $this->belongsTo('App\Pertanyaan','pertanyaan_id');
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
     }
 
     public function vote_jawabans(){
