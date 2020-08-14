@@ -26,32 +26,33 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="{{url('/beranda')}}" class="nav-link">
+                        <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
                         <p>
-                            Dashboard
+                            Home
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">GLOBAL</li>
                 <li class="nav-item">
                     <a href="{{url('/pertanyaan')}}" class="nav-link">
-                        <i class="nav-icon fas fa-question"></i>
+                        <i class="nav-icon fas fa-globe"></i>
                         <p>
-                            Pertanyaan
+                            Happy Stack Question
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{{url('/comment')}}" class="nav-link">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>
                             Comment
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="{{url('/tags')}}" class="nav-link">
-                        <i class="nav-icon fas fa-tags"></i>
+                        <!-- <i class="nav-icon fas fa-tags"></i> -->
                         <p>
                             Tags
                         </p>
@@ -59,7 +60,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{url('/profile')}}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <!-- <i class="nav-icon fas fa-user"></i> -->
                         <p>
                             Profile
                         </p>

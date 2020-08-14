@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
 
 class TagsController extends Controller
 {
@@ -13,7 +14,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        return view('tags.show');
+        $tag = Tag::all();
+        return view('tags.show',compact('tag'));
     }
 
     /**

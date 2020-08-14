@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('foto')->nullable();
             $table->integer('vote');
+            $table->string('level');
         });
     }
 

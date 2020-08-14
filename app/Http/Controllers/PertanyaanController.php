@@ -32,8 +32,9 @@ class PertanyaanController extends Controller
     //$pertanyaan = $user->pertanyaans;
 
     public function index(){
+        $count = Pertanyaan::count();
         $pertanyaan = Pertanyaan::all();
-        return view('pertanyaan.show', compact('pertanyaan'));
+        return view('pertanyaan.show', compact('pertanyaan','count'));
     }
 
     public function create(){
@@ -144,5 +145,17 @@ class PertanyaanController extends Controller
         $user_jawaban->update(['poin',$current_poin+15]);
         $user_jawaban->save();
     }
+
+    // public function cari(Request $request){
+    //     // menangkap data pencarian
+    //     $cari = $request->cari;
+
+    //     // mengambil data dari table pegawai sesuai pencarian data
+    //     $pertanyaan = Pertanyaan::where('judul','like',"%".$cari."%");
+
+    //     // mengirim data pegawai ke view index
+    //     return view('pertanyaan.show',compact('pertanyaan'));
+
+    // }
     
 }

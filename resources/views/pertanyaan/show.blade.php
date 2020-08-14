@@ -7,15 +7,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Pertanyaan</h3>
-
+                <h3 class="card-title">{{$count}} Question</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <!-- <form action="/pertanyaan/cari" method="GET"> -->
+                        <input type="text" name="cari" class="form-control float-right" placeholder="Search" old="{{ old('cari') }}">
 
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                         </div>
+                    <!-- </form> -->
                     </div>
                 </div>
             </div>
