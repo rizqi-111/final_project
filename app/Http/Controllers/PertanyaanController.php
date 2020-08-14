@@ -9,6 +9,7 @@ use App\Pertanyaan;
 use App\Tag;
 use App\Jawaban;
 use App\Vote_pertanyaan;
+use App\Komentar_pertanyaan;
 
 class PertanyaanController extends Controller
 {
@@ -106,7 +107,7 @@ class PertanyaanController extends Controller
     }
 
     //prosedur peemberian upvote pertanyaan
-    public function upvote_pertanyaan($pertanyaan_id, $vote_value){
+    public function vote_pertanyaan($pertanyaan_id, $vote_value){
         $user = Auth::user();
         $pertanyaan = Pertanyaan::find($pertanyaan_id);
 
@@ -146,16 +147,15 @@ class PertanyaanController extends Controller
         $user_jawaban->save();
     }
 
-    // public function cari(Request $request){
-    //     // menangkap data pencarian
-    //     $cari = $request->cari;
+    public function komentar_pertanyaan(Request $request,$pertanyaan_id){
+        $user = Auth::user();
+        $pertanyaan = Pertanyaan::find($pertanyaan_id);
 
-    //     // mengambil data dari table pegawai sesuai pencarian data
-    //     $pertanyaan = Pertanyaan::where('judul','like',"%".$cari."%");
+        $komen = Komentar_pertanyaan::create([
+            'isi' => $request->input('isi_komentar_pertanyaan')
+        ]);
 
-    //     // mengirim data pegawai ke view index
-    //     return view('pertanyaan.show',compact('pertanyaan'));
-
-    // }
-    
+        $pertanyaan->komentar_pertanyaans->save($komen);
+        $user->komentar_pertanyaans->save($komen);
+    }
 }
