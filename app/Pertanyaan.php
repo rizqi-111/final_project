@@ -24,4 +24,12 @@ class Pertanyaan extends Model
     public function vote_pertanyaans(){
         return $this->hasMany('App\Vote_pertanyaan');
     }
+
+    public function jawabans(){
+        return $this->hasMany('App\Jawaban');
+    }
+
+    public function jawaban_tepat(){
+        return $this->hasOne('App\Jawaban','jawaban_tepat_id');
+    }
 }
