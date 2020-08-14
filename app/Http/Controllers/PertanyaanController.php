@@ -9,6 +9,7 @@ use App\Pertanyaan;
 use App\Tag;
 use App\Jawaban;
 use App\Vote_pertanyaan;
+use App\Komentar_pertanyaan;
 
 class PertanyaanController extends Controller
 {
@@ -105,7 +106,7 @@ class PertanyaanController extends Controller
     }
 
     //prosedur peemberian upvote pertanyaan
-    public function upvote_pertanyaan($pertanyaan_id, $vote_value){
+    public function vote_pertanyaan($pertanyaan_id, $vote_value){
         $user = Auth::user();
         $pertanyaan = Pertanyaan::find($pertanyaan_id);
 
@@ -144,5 +145,16 @@ class PertanyaanController extends Controller
         $user_jawaban->update(['poin',$current_poin+15]);
         $user_jawaban->save();
     }
-    
+
+    public function komentar_pertanyaan(Request $request,$pertanyaan_id){
+        $user = Auth::user();
+        $pertanyaan = Pertanyaan::find($pertanyaan_id);
+
+        $komen = Komentar_pertanyaan::create([
+            'isi' => $request->input('isi_komentar_pertanyaan')
+        ]);
+
+        $pertanyaan->komentar_pertanyaans->save($komen);
+        $user->komentar_pertanyaans->save($komen);
+    }
 }
