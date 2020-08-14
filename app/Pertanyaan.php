@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Pertanyaan extends Model
 {
     //
+    protected $table = 'pertanyaans';
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
     }
 
     public function komentar_pertanyaans(){
