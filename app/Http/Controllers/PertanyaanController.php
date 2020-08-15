@@ -10,6 +10,7 @@ use App\Tag;
 use App\Jawaban;
 use App\Vote_pertanyaan;
 use App\Komentar_pertanyaan;
+use auth;
 
 class PertanyaanController extends Controller
 {
@@ -32,6 +33,11 @@ class PertanyaanController extends Controller
     //$user = Auth::user()
     //$pertanyaan = $user->pertanyaans;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $count = Pertanyaan::count();
         $pertanyaan = Pertanyaan::all();
@@ -39,36 +45,40 @@ class PertanyaanController extends Controller
     }
 
     public function create(){
-        return view('pertanyaan.show');
+        $pertanyaan = Pertanyaan::all();
+        return view('pertanyaan.add', compact('pertanyaan'));
     }
 
     public function store(Request $request){
         $request->validate([
             'judul' => 'required',
-            'isi' => 'required'
+            'isi' => 'required',
+            'user_id' => 'required'
         ]);
 
-        $judul = $request->input('judul');
-        $isi = $request->input('isi');
-        $tags = explode(',',$request->input('tags'));
+        // $judul = $request->input('judul');
+        // $isi = $request->input('isi');
+        // $tags = explode(',',$request->input('tags'));
 
-        $tag_ids = [];
-        foreach($tags as $t_name){
-            $tag = Tag::firstOrCreate(['nama' => $t_name]);
-            $tag_ids[] = $tag->id;
-        }
+        // $tag_ids = [];
+        // foreach($tags as $t_name){
+        //     $tag = Tag::firstOrCreate(['nama' => $t_name]);
+        //     $tag_ids[] = $tag->id;
+        // }
 
-        $pertanyaan = Pertanyaan::create([
-            'judul' => $judul,
-            'isi' => $isi,
-        ]);
+        $pertanyaan = new Pertanyaan;
+        $pertanyaan->judul      = $request['judul'];
+        $pertanyaan->isi        = $request['isi'];
+        $pertanyaan->user_id        = $request['user_id'];
+        // $pertanyaan->profile_id    = Auth::id();
+        $pertanyaan->save();
 
-        $pertanyaan->tags()->sync($tag_ids);
+        // $pertanyaan->tags()->sync($tag_ids);
 
-        $user = Auth::user();
-        $user->pertanyaans->save($pertanyaan);
+        // $user = Auth::user();
+        // $user->pertanyaans->save($pertanyaan);
         
-        return direct('/pertanyaan')->with('success','Pertanyaan Berhasil Ditambahkan');
+        return redirect('/pertanyaan')->with('success','Pertanyaan Berhasil Ditambahkan');
     }
 
     public function show($id){

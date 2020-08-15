@@ -12,6 +12,11 @@ use App\Vote_jawaban;
 
 class JawabanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //kirim jawaban
     public function store(Request $request,$pertanyaan_id){
 

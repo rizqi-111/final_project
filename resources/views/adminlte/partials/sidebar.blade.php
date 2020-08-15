@@ -15,8 +15,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"></a>
-
+                <a href="#" class="d-block">{{ Auth::user()->username }}</a>
             </div>
         </div>
 
@@ -63,6 +62,14 @@
                         <!-- <i class="nav-icon fas fa-user"></i> -->
                         <p>
                             Profile
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('/home')}}" class="nav-link">
+                        <!-- <i class="nav-icon fas fa-user"></i> -->
+                        <p>
+                            Sign Out
                         </p>
                     </a>
                 </li>

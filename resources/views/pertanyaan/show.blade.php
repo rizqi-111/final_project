@@ -1,5 +1,24 @@
 @extends('adminlte.master')
 
+@section('header')
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-10">
+                <h1>All Question</h1>
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn-primary btn-sm" href="pertanyaan/create">
+                    <i class="fas fa-add">
+                    </i>
+                    Add question
+                </a>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+@endsection
+
 @section('content')
 <section class="content">
 
@@ -7,16 +26,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{$count}} Question</h3>
+                <h3 class="card-title">{{$count}} question</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
-                    <!-- <form action="/pertanyaan/cari" method="GET"> -->
-                        <input type="text" name="cari" class="form-control float-right" placeholder="Search" old="{{ old('cari') }}">
+                        <!-- <form action="/pertanyaan/cari" method="GET"> -->
+                        <input type="text" name="cari" class="form-control float-right" placeholder="Search"
+                            old="{{ old('cari') }}">
 
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                         </div>
-                    <!-- </form> -->
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>
@@ -61,11 +81,11 @@
                                     </i>
                                     Edit
                                 </a>
-                                <a class="btn btn-danger btn-sm" href="#">
+                                <!-- <a class="btn btn-danger btn-sm" href="#">
                                     <i class="fas fa-trash">
                                     </i>
                                     Delete
-                                </a>
+                                </a> -->
                             </td>
                         </tr>
                         @endforeach
