@@ -9,6 +9,7 @@ class Tag extends Model
     //
     protected $table = 'tags';
     protected $guarded = [];
+    public $timestamps = false;
     public function pertanyaans(){
         return $this->belongsToMany('App\Pertanyaan');
     }

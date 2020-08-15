@@ -25,10 +25,10 @@ class JawabanController extends Controller
         ]);
 
         $user = Auth::user();
-        $user->jawabans->save($jawaban);
+        $user->jawabans()->save($jawaban);
 
         $pertanyaan = Pertanyaan::find($pertanyaan_id);
-        $pertanyaan->jawabans->save($jawaban);
+        $pertanyaan->jawabans()->save($jawaban);
         
         return direct('/pertanyaan')->with('success','Pertanyaan Berhasil Ditambahkan');
     }
@@ -41,8 +41,8 @@ class JawabanController extends Controller
         //vote_value == 1 -> like ; vote_value == 0 ->dislike
         $vote = Vote_jawaban::create(['up_or_down',$vote_value]);
         
-        $user->vote_jawabans->save($vote);
-        $pertanyaan->vote_jawabans->save($vote);
+        $user->vote_jawabans()->save($vote);
+        $pertanyaan->vote_jawabans()->save($vote);
 
         // perubahan poin
         $user_id_jawaban = $jawaban->user_id;
@@ -66,7 +66,7 @@ class JawabanController extends Controller
             'isi' => $request->input('isi_komentar_jawaban')
         ]);
 
-        $jawaban->komentar_jawabans->save($komen);
-        $user->komentar_jawabans->save($komen);
+        $jawaban->komentar_jawabans()->save($komen);
+        $user->komentar_jawabans()->save($komen);
     }
 }

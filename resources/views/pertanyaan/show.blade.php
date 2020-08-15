@@ -52,6 +52,9 @@
                                 Pertanyaan
                             </th>
                             <th>
+                                Pengirim
+                            </th>
+                            <th>
                                 Created
                             </th>
                             <th>
@@ -68,6 +71,7 @@
                         <tr>
                             <td>{{$p->judul}}</td>
                             <td>{{$p->isi}}</td>
+                            <td>{{ $p->user->username }}</td>
                             <td>{{$p->created_at}}</td>
                             <td>{{$p->updated_at}}</td>
                             <td class="project-actions text-right">

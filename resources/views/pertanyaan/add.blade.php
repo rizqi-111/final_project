@@ -51,18 +51,14 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Isi</label>
-                            <input type="text" class="form-control" id="isi" name="isi" placeholder="Enter isi...">
+                            {{-- <input type="text" class="form-control" id="isi" name="isi" placeholder="Enter isi..."> --}}
                             <textarea name="isi"
                                 class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="inputStatus">user id</label>
-                            <select class="form-control custom-select" name="user_id" value="{{ old('user_id')}}">
-                                <option selected="" disabled="">Select one</option>
-                                @foreach($pertanyaan as $p)
-                                <option>{{$p->user_id}}</option>
-                                @endforeach
-                            </select>
+                            <label for="inputDescription">Tags</label>
+                            <input type="text" class="form-control" id="tags" name="tags" placeholder="Pisahkan dengan koma">
                         </div>
                         <!-- <div class="form-group">
                             <label for="inputClientCompany">Client Company</label>

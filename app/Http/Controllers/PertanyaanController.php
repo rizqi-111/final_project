@@ -52,32 +52,30 @@ class PertanyaanController extends Controller
     public function store(Request $request){
         $request->validate([
             'judul' => 'required',
-            'isi' => 'required',
-            'user_id' => 'required'
+            'isi' => 'required'
         ]);
+
+        // dd($request->input());
 
         // $judul = $request->input('judul');
         // $isi = $request->input('isi');
-        // $tags = explode(',',$request->input('tags'));
+        $tags = explode(',',$request->input('tags'));
 
-        // $tag_ids = [];
-        // foreach($tags as $t_name){
-        //     $tag = Tag::firstOrCreate(['nama' => $t_name]);
-        //     $tag_ids[] = $tag->id;
-        // }
+        $tag_ids = [];
+        foreach($tags as $t_name){
+            $tag = Tag::firstOrCreate(['nama' => $t_name]);
+            $tag_ids[] = $tag->id;
+        }
 
         $pertanyaan = new Pertanyaan;
-        $pertanyaan->judul      = $request['judul'];
-        $pertanyaan->isi        = $request['isi'];
-        $pertanyaan->user_id        = $request['user_id'];
+        $pertanyaan->judul = $request['judul'];
+        $pertanyaan->isi = $request['isi'];
         // $pertanyaan->profile_id    = Auth::id();
-        $pertanyaan->save();
+        $user = Auth::user();
+        $user->pertanyaans()->save($pertanyaan);
 
-        // $pertanyaan->tags()->sync($tag_ids);
+        $pertanyaan->tags()->sync($tag_ids);
 
-        // $user = Auth::user();
-        // $user->pertanyaans->save($pertanyaan);
-        
         return redirect('/pertanyaan')->with('success','Pertanyaan Berhasil Ditambahkan');
     }
 
@@ -126,8 +124,8 @@ class PertanyaanController extends Controller
         } else { //downvote/dislike
             $vote = Vote_pertanyaan::create(['up_or_down',0]);
         }
-        $user->vote_pertanyaans->save($vote);
-        $pertanyaan->vote_pertanyaans->save($vote);
+        $user->vote_pertanyaans()->save($vote);
+        $pertanyaan->vote_pertanyaans()->save($vote);
 
         // perubahan poin
         $user_id_pertanyaan = $pertanyaan->user_id;
@@ -165,7 +163,7 @@ class PertanyaanController extends Controller
             'isi' => $request->input('isi_komentar_pertanyaan')
         ]);
 
-        $pertanyaan->komentar_pertanyaans->save($komen);
-        $user->komentar_pertanyaans->save($komen);
+        $pertanyaan->komentar_pertanyaans()->save($komen);
+        $user->komentar_pertanyaans()->save($komen);
     }
 }
