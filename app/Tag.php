@@ -11,6 +11,6 @@ class Tag extends Model
     protected $guarded = [];
     public $timestamps = false;
     public function pertanyaans(){
-        return $this->belongsToMany('App\Pertanyaan');
+        return $this->belongsToMany('App\Pertanyaan','pertanyaan_tag','pertanyaan_id','tag_id');
     }
 }

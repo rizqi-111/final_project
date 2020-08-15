@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vote_pertanyaan extends Model
 {
     //
+    protected $fillable = ['up_or_down'];
     protected $table = 'vote_pertanyaans';
 
     public function user(){

@@ -22,7 +22,7 @@ class Pertanyaan extends Model
     }
 
     public function vote_pertanyaans(){
-        return $this->hasMany('App\Vote_pertanyaan');
+        return $this->hasMany('App\Vote_pertanyaan','pertanyaan_id');
     }
 
     public function jawabans(){

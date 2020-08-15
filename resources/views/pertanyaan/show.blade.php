@@ -60,6 +60,12 @@
                             <th>
                                 Update
                             </th>
+                            <th>
+                                Aksi
+                            </th>
+                            <th>
+                                Jumlah
+                            </th>
                             <th class="text-center">
                                 Status
                             </th>
@@ -70,12 +76,21 @@
                         @foreach($pertanyaan as $p)
                         <tr>
                             <td>{{$p->judul}}</td>
-                            <td>{{$p->isi}}</td>
+                            <td>{!!$p->isi!!}</td>
                             <td>{{ $p->user->username }}</td>
                             <td>{{$p->created_at}}</td>
                             <td>{{$p->updated_at}}</td>
+                            <td class="project-actions text-center">
+                                <a class="btn btn-primary btn-sm" href="{{ route('vote',['id' => $p->id,'value' => 1]) }}">
+                                    Like
+                                </a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('vote',['id' => $p->id,'value' => 0]) }}">
+                                    Dislike
+                                </a>
+                            </td>
+                            <td>like : {{$p->vote_pertanyaans->where('up_or_down',1)->count()}} | dislike : {{$p->vote_pertanyaans->where('up_or_down',0)->count()}}</td>
                             <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
+                                <a class="btn btn-primary btn-sm" href="{{ route('pertanyaan.show',['pertanyaan' => $p->id]) }}">
                                     <i class="fas fa-folder">
                                     </i>
                                     View

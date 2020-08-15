@@ -19,10 +19,10 @@ class PertanyaanController extends Controller
     //$pertanyaan->user->username;
         
     //untuk mendapatkan jumlah upvote/like
-    //$upvote = $pertanyaan->vote_pertanyaans()->where('up_or_down',1)->count();
+    //
 
     //untuk mendaptakan jumlah downvote/dislike
-    //$upvote = $pertanyaan->vote_pertanyaans()->where('up_or_down',0)->count();
+    //
 
     //untuk mendapatkan komentar_pertanyaan
     //$komentar = $pertanyaan->komentar_pertanyaans;
@@ -82,6 +82,7 @@ class PertanyaanController extends Controller
 
     public function show($id){
         $pertanyaan = Pertanyaan::find($id);
+        // dd($pertanyaan->tags());
         return view('pertanyaan.detail',compact('pertanyaan'));
     }
 
@@ -121,38 +122,42 @@ class PertanyaanController extends Controller
         $pertanyaan = Pertanyaan::find($pertanyaan_id);
 
         if($vote_value == 1){ //upvote/like
-            $vote = Vote_pertanyaan::create(['up_or_down',1]);
+            $vote = Vote_pertanyaan::create(['up_or_down' => 1]);
         } else { //downvote/dislike
-            $vote = Vote_pertanyaan::create(['up_or_down',0]);
+            $vote = Vote_pertanyaan::create(['up_or_down' => 0]);
         }
+
         $user->vote_pertanyaans()->save($vote);
         $pertanyaan->vote_pertanyaans()->save($vote);
 
         // perubahan poin
         $user_id_pertanyaan = $pertanyaan->user_id;
         $user_pertanyaan = User::find($user_id_pertanyaan);
-        $current_poin = (int)$user_pertanyaan->poin;
-
+        $current_poin = $user_pertanyaan->vote;
+        
         if($vote_value == 1){ //upvote/like
-            $user_pertanyaan->update(['poin',$current_poin+10]);
+            $now =  (int)$current_poin+10;
+            $user_pertanyaan->vote = $now;
         } else { //downvote/dislike
-            $user_pertanyaan->update(['poin',$current_poin-1]);
+            $now =  (int)$current_poin-1;
+            $user_pertanyaan->vote = $now;
         }
-
         $user_pertanyaan->save();
+
+        return redirect('/pertanyaan');
     }
 
     //untuk memberikan jawaban_tepat
     public function pilih_jawaban($pertanyaan_id,$jawaban_id){
         $pertanyaan = Pertanyaan::find($pertanyaan_id);
-        $update = $pertanyaan->update(['jawaban_tepat_id',$jawaban_id]);
+        $update = $pertanyaan->update(['jawaban_tepat_id'=>$jawaban_id]);
         $pertanyaan->jawaban_tepat()->associate($update); //kalo error, tinggal dikomen aja
         $pertanyaan->save();
         // perubahan poin
         $user_id_jawaban = Jawaban::find($jawaban_id);
         $user_jawaban = User::find($user_id_jawaban);
         $current_poin = (int)$user_jawaban->poin;
-        $user_jawaban->update(['poin',$current_poin+15]);
+        $user_jawaban->update(['poin' => $current_poin+15]);
         $user_jawaban->save();
     }
 

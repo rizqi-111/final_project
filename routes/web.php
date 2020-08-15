@@ -23,7 +23,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 Route::resource('pertanyaan','PertanyaanController');
-Route::get('/pertanyaan/vote/{id}', 'PertanyaanController@vote_pertanyaan');
+Route::get('/pertanyaan/vote/{id}/{value}', 'PertanyaanController@vote_pertanyaan')->name('vote');;
 Route::get('/profile', 'ProfileController@index');
 Route::get('/comment', 'CommentController@index');
 Route::get('/tags', 'TagsController@index');  

@@ -20,11 +20,10 @@
 
 @section('content')
 <section class="content">
-
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Questions Detail</h3>
+          <h3 class="card-title">{{$pertanyaan->judul}}</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -37,30 +36,15 @@
           <div class="row">
             <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
               <div class="row">
-                <div class="col-12 col-sm-4">
-                  <div class="info-box bg-light">
-                    <div class="info-box-content">
-                      <span class="info-box-text text-center text-muted">Estimated budget</span>
-                      <span class="info-box-number text-center text-muted mb-0">2300</span>
+                @foreach($pertanyaan->tags as $key)
+                  <div class="col-12 col-sm-4">
+                    <div class="info-box bg-light">
+                      <div class="info-box-content">
+                        <i class="fas fa-tag">{{$key['nama']}}</i>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12 col-sm-4">
-                  <div class="info-box bg-light">
-                    <div class="info-box-content">
-                      <span class="info-box-text text-center text-muted">Total amount spent</span>
-                      <span class="info-box-number text-center text-muted mb-0">2000</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-sm-4">
-                  <div class="info-box bg-light">
-                    <div class="info-box-content">
-                      <span class="info-box-text text-center text-muted">Estimated project duration</span>
-                      <span class="info-box-number text-center text-muted mb-0">20 <span>
-                    </span></span></div>
-                  </div>
-                </div>
+                @endforeach
               </div>
               <div class="row">
                 <div class="col-12">

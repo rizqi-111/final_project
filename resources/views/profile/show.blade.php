@@ -29,21 +29,23 @@
                                 src="{{asset('adminlte/dist/img/user4-128x128.jpg')}}" alt="User profile picture">
                         </div>
                         @foreach($user as $u)
-                        <h3 class="profile-username text-center">{{$u->username}}</h3>
+                        @if($u->id == Auth::user()->id)
+                            <h3 class="profile-username text-center">{{$u->username}}</h3>
 
-                        <!-- <p class="text-muted text-center">Software Engineer</p> -->
+                            <!-- <p class="text-muted text-center">Software Engineer</p> -->
 
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <b>ID</b> <a class="float-right">{{$u->id}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>EMAIL</b> <a class="float-right">{{$u->email}}</a>
-                            </li>
-                            <li class="list-group-item">
-                                <b>VOTE</b> <a class="float-right">{{$u->vote}}</a>
-                            </li>
-                        </ul>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>ID</b> <a class="float-right">{{$u->id}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>EMAIL</b> <a class="float-right">{{$u->email}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>VOTE</b> <a class="float-right">{{$u->vote}}</a>
+                                </li>
+                            </ul>
+                        @endif
                     </div>
                     @endforeach
                     <!-- /.card-body -->
