@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PertanyaanController@index');
 
 Auth::routes();
 
@@ -25,6 +23,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 Route::resource('pertanyaan','PertanyaanController');
+Route::get('/pertanyaan/vote/{id}', 'PertanyaanController@vote_pertanyaan');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/comment', 'CommentController@index');
-Route::get('/tags', 'TagsController@index');
+Route::get('/tags', 'TagsController@index');  
