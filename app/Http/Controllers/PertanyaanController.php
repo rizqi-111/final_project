@@ -41,7 +41,8 @@ class PertanyaanController extends Controller
     public function index(){
         $count = Pertanyaan::count();
         $pertanyaan = Pertanyaan::all();
-        return view('pertanyaan.show', compact('pertanyaan','count'));
+        $user = User::all();
+        return view('pertanyaan.show', compact('pertanyaan','count','user'));
     }
 
     public function create(){
